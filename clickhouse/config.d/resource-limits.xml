@@ -1,0 +1,22 @@
+<clickhouse>
+    <max_server_memory_usage_to_ram_ratio>0.8</max_server_memory_usage_to_ram_ratio>
+
+    <merge_tree>
+        <number_of_free_entries_in_pool_to_lower_max_size_of_merge>2</number_of_free_entries_in_pool_to_lower_max_size_of_merge>
+        <number_of_free_entries_in_pool_to_execute_mutation>2</number_of_free_entries_in_pool_to_execute_mutation>
+        <max_bytes_to_merge_at_max_space_in_pool>161061273600</max_bytes_to_merge_at_max_space_in_pool>
+    </merge_tree>
+
+    <max_connections>64</max_connections>
+    <max_concurrent_queries>10</max_concurrent_queries>
+
+    <mark_cache_size>134217728</mark_cache_size>
+    <uncompressed_cache_size>33554432</uncompressed_cache_size>
+
+    <logger>
+        <level>warning</level>
+        <console>1</console>
+        <size>50M</size>
+        <count>2</count>
+    </logger>
+</clickhouse>

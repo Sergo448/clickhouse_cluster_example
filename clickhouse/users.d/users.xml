@@ -1,0 +1,41 @@
+<clickhouse>
+    <users>
+        <admin1>
+            <password_sha256_hex>bd5a6e06b5c953bded5b1289ab353ac65ec58f3eb70c539a326e72b8a4d08ea0</password_sha256_hex>
+            <networks>
+                <ip>::/0</ip>
+            </networks>
+            <profile>default</profile>
+            <quota>default</quota>
+            <access_management>1</access_management>
+        </admin1>
+        <admin2>
+            <password_sha256_hex>9f207c8c4b68cdb2354b59445635c5fa610eee5261a1b334d1bd790bfd8689c0</password_sha256_hex>
+            <networks>
+                <ip>::/0</ip>
+            </networks>
+            <profile>default</profile>
+            <quota>default</quota>
+            <access_management>1</access_management>
+        </admin2>
+    </users>
+
+    <profiles>
+        <default>
+            <do_not_merge_across_partitions_select_final>1</do_not_merge_across_partitions_select_final>
+            <final>1</final>
+            <optimize_on_insert>1</optimize_on_insert>
+
+            <!-- Per-query memory limits -->
+            <max_memory_usage>150000000</max_memory_usage>
+            <max_memory_usage_for_user>300000000</max_memory_usage_for_user>
+
+            <!-- Limit query threads -->
+            <max_threads>2</max_threads>
+            <max_insert_threads>1</max_insert_threads>
+
+            <!-- Limit network buffers -->
+            <max_read_buffer_size>1048576</max_read_buffer_size>
+        </default>
+    </profiles>
+</clickhouse>
