@@ -13,10 +13,6 @@
                     <host>clickhouse-02</host>
                     <port>9000</port>
                 </replica>
-                <replica>
-                    <host>clickhouse-03</host>
-                    <port>9000</port>
-                </replica>
             </shard>
         </company_cluster>
     </remote_servers>
@@ -24,14 +20,6 @@
     <zookeeper>
         <node>
             <host>zk-01</host>
-            <port>2181</port>
-        </node>
-        <node>
-            <host>zk-02</host>
-            <port>2181</port>
-        </node>
-        <node>
-            <host>zk-03</host>
             <port>2181</port>
         </node>
     </zookeeper>

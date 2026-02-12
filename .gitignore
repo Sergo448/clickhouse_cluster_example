@@ -1,0 +1,92 @@
+# ========================
+# OS
+# ========================
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# ========================
+# IDE / Editors
+# ========================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ========================
+# Environment / Secrets
+# ========================
+.env
+.env.*
+!.env.example
+
+# ========================
+# Docker
+# ========================
+docker-compose.override.yml
+docker-compose.override.yaml
+
+# ========================
+# ClickHouse local data
+# ========================
+clickhouse/**/data/
+clickhouse/**/logs/
+clickhouse/**/tmp/
+clickhouse/**/preprocessed_configs/
+
+# ========================
+# ZooKeeper local data
+# ========================
+zookeeper/data/
+zookeeper/datalog/
+zookeeper/logs/
+
+# ========================
+# Logs
+# ========================
+*.log
+logs/
+
+# ========================
+# Backups / Dumps
+# ========================
+backups/
+*.backup
+*.dump
+*.sql.gz
+*.sql.bz2
+
+# ========================
+# Python (scripts, venvs)
+# ========================
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# ========================
+# Node.js (tooling)
+# ========================
+node_modules/
+
+# ========================
+# Terraform / IaC
+# ========================
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+!*.tfvars.example
+
+# ========================
+# Misc
+# ========================
+*.tmp
+*.bak
+*.orig
+.claude/

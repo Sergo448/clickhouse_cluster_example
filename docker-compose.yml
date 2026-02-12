@@ -7,63 +7,11 @@ services:
       - "2181:2181"
     environment:
       ZOO_MY_ID: 1
-      ZOO_SERVERS: server.1=zk-01:2888:3888;2181 server.2=zk-02:2888:3888;2181 server.3=zk-03:2888:3888;2181
+      ZOO_STANDALONE_ENABLED: "true"
       ZOO_JVMFLAGS: "-Xms64m -Xmx128m -XX:+UseG1GC"
     volumes:
       - zk-01-data:/data
       - zk-01-datalog:/datalog
-      - ./zookeeper/zoo.cfg:/conf/zoo.cfg
-    networks:
-      - clickhouse-net
-    deploy:
-      resources:
-        limits:
-          cpus: "0.30"
-          memory: 256M
-        reservations:
-          cpus: "0.10"
-          memory: 64M
-    restart: unless-stopped
-
-  zk-02:
-    image: zookeeper:3.8
-    container_name: zk-02
-    hostname: zk-02
-    ports:
-      - "2182:2181"
-    environment:
-      ZOO_MY_ID: 2
-      ZOO_SERVERS: server.1=zk-01:2888:3888;2181 server.2=zk-02:2888:3888;2181 server.3=zk-03:2888:3888;2181
-      ZOO_JVMFLAGS: "-Xms64m -Xmx128m -XX:+UseG1GC"
-    volumes:
-      - zk-02-data:/data
-      - zk-02-datalog:/datalog
-      - ./zookeeper/zoo.cfg:/conf/zoo.cfg
-    networks:
-      - clickhouse-net
-    deploy:
-      resources:
-        limits:
-          cpus: "0.30"
-          memory: 256M
-        reservations:
-          cpus: "0.10"
-          memory: 64M
-    restart: unless-stopped
-
-  zk-03:
-    image: zookeeper:3.8
-    container_name: zk-03
-    hostname: zk-03
-    ports:
-      - "2183:2181"
-    environment:
-      ZOO_MY_ID: 3
-      ZOO_SERVERS: server.1=zk-01:2888:3888;2181 server.2=zk-02:2888:3888;2181 server.3=zk-03:2888:3888;2181
-      ZOO_JVMFLAGS: "-Xms64m -Xmx128m -XX:+UseG1GC"
-    volumes:
-      - zk-03-data:/data
-      - zk-03-datalog:/datalog
       - ./zookeeper/zoo.cfg:/conf/zoo.cfg
     networks:
       - clickhouse-net
@@ -93,8 +41,6 @@ services:
       - ./clickhouse/users.d/users.xml:/etc/clickhouse-server/users.d/users.xml
     depends_on:
       - zk-01
-      - zk-02
-      - zk-03
     networks:
       - clickhouse-net
     deploy:
@@ -127,42 +73,6 @@ services:
       - ./clickhouse/users.d/users.xml:/etc/clickhouse-server/users.d/users.xml
     depends_on:
       - zk-01
-      - zk-02
-      - zk-03
-    networks:
-      - clickhouse-net
-    deploy:
-      resources:
-        limits:
-          cpus: "0.75"
-          memory: 1G
-        reservations:
-          cpus: "0.20"
-          memory: 256M
-    ulimits:
-      nofile:
-        soft: 65536
-        hard: 65536
-    restart: unless-stopped
-
-  clickhouse-03:
-    image: clickhouse/clickhouse-server:24.8
-    container_name: clickhouse-03
-    hostname: clickhouse-03
-    ports:
-      - "8125:8123"
-      - "9002:9000"
-    volumes:
-      - ch-03-data:/var/lib/clickhouse
-      - ch-03-logs:/var/log/clickhouse-server
-      - ./clickhouse/config.d/cluster.xml:/etc/clickhouse-server/config.d/cluster.xml
-      - ./clickhouse/config.d/macros-node3.xml:/etc/clickhouse-server/config.d/macros.xml
-      - ./clickhouse/config.d/resource-limits.xml:/etc/clickhouse-server/config.d/resource-limits.xml
-      - ./clickhouse/users.d/users.xml:/etc/clickhouse-server/users.d/users.xml
-    depends_on:
-      - zk-01
-      - zk-02
-      - zk-03
     networks:
       - clickhouse-net
     deploy:
@@ -182,16 +92,10 @@ services:
 volumes:
   zk-01-data:
   zk-01-datalog:
-  zk-02-data:
-  zk-02-datalog:
-  zk-03-data:
-  zk-03-datalog:
   ch-01-data:
   ch-01-logs:
   ch-02-data:
   ch-02-logs:
-  ch-03-data:
-  ch-03-logs:
 
 networks:
   clickhouse-net:

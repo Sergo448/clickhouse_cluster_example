@@ -1,7 +1,0 @@
-<clickhouse>
-    <macros>
-        <cluster>company_cluster</cluster>
-        <shard>01</shard>
-        <replica>ch-03</replica>
-    </macros>
-</clickhouse>

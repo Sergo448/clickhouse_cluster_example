@@ -1,23 +1,14 @@
 <clickhouse>
     <users>
-        <admin1>
-            <password_sha256_hex>bd5a6e06b5c953bded5b1289ab353ac65ec58f3eb70c539a326e72b8a4d08ea0</password_sha256_hex>
+        <clickhouseUser1>
+            <password>clickhouseUser1</password>
             <networks>
                 <ip>::/0</ip>
             </networks>
             <profile>default</profile>
             <quota>default</quota>
             <access_management>1</access_management>
-        </admin1>
-        <admin2>
-            <password_sha256_hex>9f207c8c4b68cdb2354b59445635c5fa610eee5261a1b334d1bd790bfd8689c0</password_sha256_hex>
-            <networks>
-                <ip>::/0</ip>
-            </networks>
-            <profile>default</profile>
-            <quota>default</quota>
-            <access_management>1</access_management>
-        </admin2>
+        </clickhouseUser1>
     </users>
 
     <profiles>
